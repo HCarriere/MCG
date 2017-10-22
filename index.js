@@ -2,9 +2,7 @@
 
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express-handlebars');
 const http = require('http');
-const path = require('path');
 const passport = require('passport');
 const multer = require('multer');
 const bodyParser = require('body-parser');
@@ -34,34 +32,16 @@ app
   extended: true
 }));
 
-// handlebars configuration
-let handlebars = exphbs.create({
-    defaultLayout: 'main',
-    extname: '.hbs',
-    layoutsDir: path.join(__dirname,'views/layouts'),
-});
-app
-.engine('.hbs', handlebars.engine)
-.set('view engine', '.hbs')
-.set('views', path.join(__dirname, 'views/layouts'));
 
 // routes, middlewares, setup
 servers.setupServers(app, config.server.type);
 
 
-// 404 route
-app.get('*', (req, res) => {
-    res.render('error', {
-        errorCode: 404,
-    });
-});
-
 //////////// Error handler //////////
 app.use((err, request, response, next) => {  
     log(err);
-    response.status(500).render('error', {
-        errorCode:500,
-    });
+    res.status(500);
+    res.json(err);
 });
 
 server.listen(config.server.port, (err) => {
