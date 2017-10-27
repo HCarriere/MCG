@@ -20,7 +20,9 @@ let config = {
         salt: 's6fe48s6e8f*/sefesf*956f'
     },
     debug: getConfig('DEBUG', true),
-    
+    game: {
+        root: '/js/game/'
+    }
 };
 
 

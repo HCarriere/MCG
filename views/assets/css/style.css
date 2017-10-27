@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+}
+
+#background{
+    z-index: 1;
+}
+
+#game{
+    z-index: 2;
+}
+
+#ui {
+    z-index: 3;
+}
+
+canvas{
+    position: absolute;
+    width:100%;
+    height:auto;
+}

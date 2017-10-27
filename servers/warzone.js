@@ -2,6 +2,7 @@
 
 const express = require('express');
 const exphbs = require('express-handlebars');
+const config = require('../configuration');
 
 function setup(app) {
     // express options
@@ -25,7 +26,12 @@ function setup(app) {
     app
     .get('/', (req, res) => {
         res.render('game', {
-            
+            additionalJs: [
+                config.game.root+'core.js',
+                config.game.root+'debug.js',
+                config.game.root+'graphics/base.js',
+                config.game.root+'graphics/filters.js',
+            ]
         });
     })
     
