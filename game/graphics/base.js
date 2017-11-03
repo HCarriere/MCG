@@ -1,7 +1,7 @@
 'use strict';
 
 /**
-* All the base drawing functions, such as rect, circle, text, image and such...
+* All the base drawing functions, such as rect, circle, text, image...
 */
 
 function fillStyle(str) {
@@ -38,13 +38,17 @@ function image(image, x, y, filter) {
 }
 
 
-function text(x, y, str) {
-    
+function text(str, x, y) {
+    ctx.fillText(str, x, y)
 }
 
 
 function textStyle(str) {
-    
+    ctx.font = str;
+}
+
+function textAlign(str) {
+    ctx.textAlign = str;
 }
 
 

@@ -21,7 +21,7 @@ let config = {
     },
     debug: getConfig('DEBUG', true),
     game: {
-        root: '/js/game/'
+        root: '/game'
     }
 };
 

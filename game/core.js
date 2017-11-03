@@ -1,7 +1,8 @@
 'use strict';
 
 /**
-* All the base drawing functions, such as rect, circle, text, image and such...
+* CORE.JS
+* main document
 */
 
 let canvas;
@@ -17,21 +18,28 @@ let mouse;
 
 function launch() {
     
+    log('Launching MCG');
+    
     initCanvas();
     
-    draw();
+    render();
     
-    Debug.log('coucou');
 }
 
 // MAIN LOOP //
 
-function draw() {
-    ctx.clearRect(0, 0, width, height);
+function render() {
+    // ctx.clearRect(0, 0, width, height);
+    fillStyle(0x000);
+    rect(0,0,width,height);
     
+    
+    
+    // buttons
+    buttons.render();
     
     currentFrame++;
-    requestAnimationFrame(draw);
+    requestAnimationFrame(render);
 }
 
 // UTILS //
