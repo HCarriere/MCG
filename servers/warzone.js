@@ -29,20 +29,11 @@ function setup(app) {
     app
     .get('/', (req, res) => {
         res.render('game', {
-            additionalJs: [
-                config.game.root+'/core.js',
-                config.game.root+'/const.js',
-                config.game.root+'/debug.js',
-                config.game.root+'/graphics/base.js',
-                config.game.root+'/graphics/filters.js',
-                config.game.root+'/physics/physics.js',
-                config.game.root+'/physics/particles.js',
-                config.game.root+'/controller/controller.js',
-                config.game.root+'/controller/keyboard.js',
-                config.game.root+'/controller/pointer.js',
-                config.game.root+'/ui/buttons.js',
-                config.game.root+'/ui/scenes.js',
-            ]
+            additionalJs: gameSources.map(
+                (val) => {
+                    return config.game.root+'/'+val;
+                }
+            )
         });
     })
     
@@ -54,5 +45,20 @@ function setup(app) {
     });
     
 }
+
+let gameSources = [
+    'core.js',
+    'const.js',
+    'debug.js',
+    'utils.js',
+    'graphics/base.js',
+    'graphics/filters.js',
+    'physics/physics.js',
+    'physics/particles.js',
+    'controller/controller.js',
+    'controller/keyboard.js',
+    'ui/buttons.js',
+    'ui/scenes.js',
+];
 
 module.exports = setup;

@@ -15,15 +15,25 @@ function strokeStyle(str) {
 
 
 function rect(x, y, wid, hei) {
-    ctx.rect(x,y,wid,hei);
-    ctx.fill();
-    ctx.stroke();
+    ctx.fillRect(x,y,wid,hei);
+}
+
+function strokeRect(x, y, wid, hei) {
+    ctx.strokeRect(x,y,wid,hei);
 }
 
 
 function circle(x, y, radius) {
     ctx.arc(x, y, radius, 0, Math.TWO_PI);
     ctx.fill();
+    ctx.stroke();
+}
+
+
+function stroke(x, y, x2, y2) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x2, y2);
     ctx.stroke();
 }
 
@@ -47,8 +57,9 @@ function textStyle(str) {
     ctx.font = str;
 }
 
-function textAlign(str) {
-    ctx.textAlign = str;
+function textAlign(vertical, horizontal) {
+    ctx.textAlign = vertical;
+    ctx.textBaseline = horizontal;
 }
 
 
