@@ -23,7 +23,7 @@ function launch() {
     
     initCanvas();
     
-    
+    /*
     buttons.create({
         x: 30, y: 240,
         width: 300, height: 120,
@@ -36,7 +36,18 @@ function launch() {
         },
         cooldown: 0.5,
     });
+    */
     
+    gameEngine.loadMap({
+        name: 'Map de test',
+        width: 100,
+        height: 40,
+        start: {
+            x: 10,
+            y: 10
+        }
+        
+    });
     
     render();
     
@@ -51,11 +62,15 @@ function render() {
     
     getFPS();
     
+    // controls
     controller.runAdapter();
+    // game physics & mechanics
+    gameEngine.run();
     
     // buttons
     buttons.render();
-    
+    // game
+    gameEngine.render();
     // debug
     debug.showFPS();
     

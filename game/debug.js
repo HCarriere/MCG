@@ -15,52 +15,57 @@ function log(s) {
     
 let debug = (function() {
     
-    let lastFPSs = [];
-    let lastFluctuations = [];
+    const pointDistance = 3;
+    const pointAmount = 350;
     
+    let lastFPSs = [];
+    let fluctuations = [];
+        
     function showFPS() {
         if(frameRate) {
             lastFPSs.push(frameRate);
-            lastFluctuations.push(arrayFluctuation(lastFPSs));
+            fluctuations.push(getFluctuation(lastFPSs));
         }
-        if(lastFPSs.length > 60) {
+        if(lastFPSs.length > pointAmount) {
             lastFPSs.shift();
-            lastFluctuations.shift();
+            fluctuations.shift();
         }
         
         // FPS
         for(let i=0; i<lastFPSs.length-1; i++) {
-            if(lastFPSs[i+1] < 59) {
-                strokeStyle('red');
-            } else {
+            if(lastFPSs[i+1] < 55) {
                 strokeStyle('white');
+            } else {
+                strokeStyle('green');
             }
-            stroke(10+i*3, 85-lastFPSs[i],
-                   10+i*3+3, 85-lastFPSs[i+1]);
+            stroke(10+i*pointDistance, 85-lastFPSs[i],
+                   10+i*pointDistance+pointDistance, 85-lastFPSs[i+1]);
         }
-        // Fluctuations
-        for(let i=0; i<lastFluctuations.length-1; i++) {
-            if(lastFluctuations[i+1] < 10 && lastFluctuations[i+1] > -10) {
+        // fluctuation
+        for(let i=0; i<fluctuations.length-1; i++) {
+            if(Math.abs(fluctuations[i+1]) < 15) {
                 strokeStyle('green');
             } else {
-                strokeStyle('white');
+                strokeStyle('red');
             }
-            stroke(10+i*3, 135-lastFPSs[i]/5,
-                   10+i*3+3, 135-lastFPSs[i+1]/5);
+            stroke(10+i*pointDistance, 100-fluctuations[i],
+                   10+i*pointDistance+pointDistance, 100-fluctuations[i+1]);
         }
+        strokeStyle('grey');
+        stroke(10, 100, 10+pointAmount*pointDistance, 100);
         
         // Text
         fillStyle('white');
         textAlign('left', 'top');
         textStyle('10px monospace');
         text('FPS : '+ Math.round(lastFPSs[lastFPSs.length-1]), 10, 10);
-        text('Fluctuation : '+Math.round(lastFluctuations[lastFluctuations.length-1]), 10, 90);
+        text('Fluctuation : '+ Math.round(fluctuations[fluctuations.length-1]), 10, 50);
     }
     
-    function arrayFluctuation(array) {
-        let fluc = 0.0;
-        for(let i=0; i<array.length-1; i++) {
-            fluc += array[i]-array[i+1];
+    function getFluctuation(array) {
+        let fluc = 0;
+        for(let a of array) {
+            fluc += 60-a;
         }
         return fluc;
     }

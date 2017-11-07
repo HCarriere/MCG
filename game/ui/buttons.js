@@ -14,7 +14,6 @@
     textStyle: string,
     textColor: string,
     tooltip: tooltip,
-    shortcut: controllerAction,
     action: function,
     on: {controllerAction: function }
     cooldown: number,

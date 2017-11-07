@@ -29,9 +29,9 @@ function setup(app) {
     app
     .get('/', (req, res) => {
         res.render('game', {
-            additionalJs: gameSources.map(
+            additionalJs: config.gameSources.map(
                 (val) => {
-                    return config.game.root+'/'+val;
+                    return '/game/'+val;
                 }
             )
         });
@@ -46,19 +46,5 @@ function setup(app) {
     
 }
 
-let gameSources = [
-    'core.js',
-    'const.js',
-    'debug.js',
-    'utils.js',
-    'graphics/base.js',
-    'graphics/filters.js',
-    'physics/physics.js',
-    'physics/particles.js',
-    'controller/controller.js',
-    'controller/keyboard.js',
-    'ui/buttons.js',
-    'ui/scenes.js',
-];
 
 module.exports = setup;

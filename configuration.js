@@ -20,10 +20,26 @@ let config = {
         salt: 's6fe48s6e8f*/sefesf*956f'
     },
     debug: getConfig('DEBUG', true),
-    game: {
-        root: '/game'
-    }
+    gameSources: [
+        'core.js',
+        'const.js',
+        'debug.js',
+        'utils.js',
+        'graphics/base.js',
+        'graphics/filters.js',
+        'physics/physics.js',
+        'physics/particles.js',
+        'controller/controller.js',
+        'controller/keyboard.js',
+        'ui/buttons.js',
+        'ui/scenes.js',
+        'engine/engine.js',
+    ],
+    editorSources: [
+        'editor.js',
+    ]
 };
+
 
 
 function getConfig(varEnv, defaultValue) {
